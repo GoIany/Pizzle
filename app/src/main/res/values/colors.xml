@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#5C5C5C</color>
+    <color name="colorPrimaryDark">#5C5C5C</color>
+    <color name="colorAccent">#E35529</color>
+
+    <color name="pieceShape">#808A8A8A</color>
+
+    <color name="slide_puzzle_layout_background">#9E9E9E</color>
+    <color name="slide_puzzle_layout_padding">#FFFFFF</color>
+
+    <color name="noContinue">#737373</color>
+    <color name="basicTextColor">#000000</color>
+
+    <color name="pieceNumBox">#CC474747</color>
+    <color name="pieceNum">#787878</color>
+    <color name="optDialogSizeBtnUnClick">#717171</color>
+    <color name="optDialogSizeBtnClick">#3D3D3D</color>
+
+</resources>

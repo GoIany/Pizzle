@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:background="@color/colorPrimaryDark"
+    android:orientation="vertical"
+    tools:context=".SlideGameActivity">
+
+    <!--테스트 광고 ID: ca-app-pub-3940256099942544/6300978111-->
+    <!--실제 광고 ID: ca-app-pub-3327298017611204/9876650551 -->
+
+    <com.yjh.pizzle.SlidePuzzleLayout
+        android:id="@+id/slidePuzzleLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/slide_puzzle_layout_background"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/adVerticalGameView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </com.yjh.pizzle.SlidePuzzleLayout>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adVerticalGameView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        app:adSize="BANNER"
+        app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

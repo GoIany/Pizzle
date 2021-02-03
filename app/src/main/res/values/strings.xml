@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name" translatable="false">Pizzle</string>
+    <string name="complete_dialog_title">Puzzle Completed</string>
+    <string name="record_name_hint">Picture Name</string>
+    <string name="mainNewGame">New Game</string>
+    <string name="mainContinue">Continue</string>
+    <string name="mainRecord">Record</string>
+    <string name="mainExit">Exit</string>
+    <string name="RecordGameRecord">Game Record</string>
+    <string name="DialogNewGamePicture">Picture</string>
+    <string name="DialogNewGameNum">Number</string>
+    <string name="DialogNewGameTitle">Select Mode</string>
+    <string name="Ok">Ok</string>
+    <string name="Cancel">Cancel</string>
+    <string name="PuzzleSize">PuzzleSize</string>
+    <string name="DialogInitPuzzleTitle">Puzzle Option</string>
+    <string name="DialogCompleteRecord">Record</string>
+
+</resources>
