@@ -5,6 +5,7 @@ import android.graphics.Canvas
 import android.os.Handler
 import android.os.Looper
 import android.util.AttributeSet
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -53,6 +54,9 @@ class InGameMenu: LinearLayout {
                 i?.showNum = !(i?.showNum!!)
             }
             numShowBtn.setImageResource(if (puzzleView[0]?.showNum == true) R.drawable.numbox_show_btn else R.drawable.numbox_not_btn)
+        }
+        undoBtn.setOnClickListener {
+            (mContext as SlideGameActivity).finish()
         }
         isNumAndInit = isNum
 

@@ -1,16 +1,22 @@
 package com.yjh.pizzle
 
 import android.animation.ObjectAnimator
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.graphics.Bitmap
+import android.media.AudioManager
+import android.media.SoundPool
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.yjh.pizzle.Record.PlayRecord
 import com.yjh.pizzle.Record.RecordDatabase
+import kotlinx.android.synthetic.main.activity_slide_game.view.*
 import java.io.File
 import java.io.ObjectOutputStream
 import java.util.*
@@ -24,6 +30,9 @@ class SlidePuzzleLayout : FrameLayout {
     var gameData: GameData? = null
     var inGameMenu: InGameMenu? = null
     var selectedPicture: Bitmap? = null
+
+    var soundPool: SoundPool? = null
+    var slideSoundID: Int? =null
 
     var isSetPicture = false
     var puzzleCompleted = false
@@ -56,6 +65,12 @@ class SlidePuzzleLayout : FrameLayout {
 
     fun init(context: Context){
         mContext = context
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            soundPool = SoundPool.Builder().build()
+        }else{
+            soundPool = SoundPool(1, AudioManager.STREAM_MUSIC, 0)
+        }
+        slideSoundID = soundPool?.load(mContext, R.raw.slide_sound, 1)
     }
 
     override fun onWindowFocusChanged(hasWindowFocus: Boolean) {
@@ -84,7 +99,6 @@ class SlidePuzzleLayout : FrameLayout {
             }else{
                 optionDialog()
             }
-
 
             isSetPicture = false
         }
@@ -257,6 +271,7 @@ class SlidePuzzleLayout : FrameLayout {
 
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     fun setPuzzle(){
 
         var frameLayoutParams = ConstraintLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, pieceWidth*(yNum+1))
@@ -276,8 +291,23 @@ class SlidePuzzleLayout : FrameLayout {
             for(forX in 0 until xNum){
                 if(puzzleArray[forY][forX] != leftTopEmpty && puzzleArray[forY][forX] != pieceEmpty) {
 
-                    puzzleView[puzzleArray[forY][forX]]?.setOnClickListener {
-                        puzzleOnClick(it)
+//                    puzzleView[puzzleArray[forY][forX]]?.setOnClickListener {
+//                        Log.d("태그","onClick")
+//                        puzzleOnClick(it)
+//                    }
+                    puzzleView[puzzleArray[forY][forX]]?.setOnTouchListener { v, event ->
+                        when(event.action){
+                            MotionEvent.ACTION_DOWN -> {
+                                puzzleOnClick(v)
+                            }
+//                            MotionEvent.ACTION_MOVE -> {
+//                                Log.d("태그","onMove")
+//                            }
+//                            MotionEvent.ACTION_UP -> {
+//                                Log.d("태그","onUp")
+//                            }
+                        }
+                        false
                     }
                     var layoutParams = FrameLayout.LayoutParams(pieceWidth, pieceWidth)
                     layoutParams.topMargin = pieceWidth * forY
@@ -363,6 +393,8 @@ class SlidePuzzleLayout : FrameLayout {
             duration = 200
             start()
         }
+        Log.d("태그", "soundId: $slideSoundID")
+        slideSoundID?.let { soundPool?.play(it, 1F, 1F, 0, 0, 1F) }
 
         //퍼즐 배열 이동
         when (direction){

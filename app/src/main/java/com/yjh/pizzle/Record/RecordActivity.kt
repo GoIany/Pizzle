@@ -12,7 +12,6 @@ class RecordActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("태그","Record")
         setContentView(R.layout.activity_record)
 
         db = RecordDatabase.getInstance(this)
@@ -23,5 +22,8 @@ class RecordActivity : AppCompatActivity() {
         var adapter = RcAdapter(recordList)
         recordRv.adapter = adapter
 
+        recordUndoBtn.setOnClickListener {
+            this.finish()
+        }
     }
 }

@@ -32,6 +32,7 @@ class SlideGameActivity() : AppCompatActivity(){
     private lateinit var slicePicture : Array<PuzzlePiece?>
     lateinit var gameData: GameData
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_slide_game)
